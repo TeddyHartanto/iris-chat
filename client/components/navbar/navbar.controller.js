@@ -3,8 +3,11 @@
 angular.module('irisChatApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
-      'title': 'Home',
+      'title': 'Chat',
       'link': '/'
+    }, {
+      'title': 'About',
+      'link': '#'
     }];
 
     $scope.isCollapsed = true;

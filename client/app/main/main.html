@@ -8,26 +8,44 @@
   </div>
 </header>
 
+<!-- changes made by teddy -->
 <div class="container">
-  <div class="row">
-    <div class="col-lg-12">
-      <h1 class="page-header">Features:</h1>
-      <ul class="nav nav-tabs nav-stacked col-md-4 col-lg-4 col-sm-6" ng-repeat="thing in awesomeThings">
-        <li><a href="#" tooltip="{{thing.info}}">{{thing.name}}<button type="button" class="close" ng-click="deleteThing(thing)">&times;</button></a></li>
-      </ul>
+  <div class="container" id="chatapp">
+    <div class="row">
+
+       <section class="col-lg-9" id="chatbox" >
+
+        <!-- section where messages appear -->
+        <section>
+          <div ng-repeat="message in messages track by $index">
+            {{message}}
+          </div>
+        </section>
+
+        <!-- section where input form is -->
+        <footer>
+          <form class="chat-form" ng-submit="send()">
+            <p class="input-group">
+              <input type="text" class="form-control" placeholder="Type your message" ng-model="input">
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary" ng-click="send()">Send</button>
+              </span>
+            </p>
+          </form>
+        </footer>
+      </section>
+
+      <!-- section where features reside -->
+      <aside class="col-lg-3">
+        <div ng-repeat="feature in features">
+          {{feature}}
+        </div>
+      </aside>
+
     </div>
   </div>
-
-  <form class="thing-form">
-    <label>Syncs in realtime across clients</label>
-    <p class="input-group">
-      <input type="text" class="form-control" placeholder="Add a new thing here." ng-model="newThing">
-      <span class="input-group-btn">
-        <button type="submit" class="btn btn-primary" ng-click="addThing()">Add New</button>
-      </span>
-    </p>
-  </form>
 </div>
+<!-- end of changes -->
 
 <footer class="footer">
   <div class="container">

@@ -2,26 +2,14 @@
 
 angular.module('irisChatApp')
   .controller('MainCtrl', function ($scope, $http, socket) {
-    $scope.awesomeThings = [];
-
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-      socket.syncUpdates('thing', $scope.awesomeThings);
-    });
-
-    $scope.addThing = function() {
-      if($scope.newThing === '') {
+    $scope.messages = ['Msg1', 'Msg2', 'Msg3'];
+    $scope.features = ['Ftr1', 'Ftr2', 'Ftr3'];
+    $scope.input = '';
+    $scope.send = function() {
+      if ($scope.input === '') {
         return;
       }
-      $http.post('/api/things', { name: $scope.newThing });
-      $scope.newThing = '';
-    };
-
-    $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing._id);
-    };
-
-    $scope.$on('$destroy', function () {
-      socket.unsyncUpdates('thing');
-    });
+      $http.post('/api/messages', { message: $scope.input });
+      $scope.input = '';
+    }
   });

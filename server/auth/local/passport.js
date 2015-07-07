@@ -6,7 +6,7 @@ exports.setup = function (User, config) {
       usernameField: 'email',
       passwordField: 'password' // this is the virtual field on the model
     },
-    function(email, password, done) {
+    function(email, password, done) { // this is the verify callback [teddy]
       User.findOne({
         email: email.toLowerCase()
       }, function(err, user) {

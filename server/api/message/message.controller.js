@@ -18,9 +18,9 @@ exports.index = function(req, res) {
 
 // Creates a new message in the DB.
 exports.create = function(req, res) {
-  Message.create(req.body, function(err, msgs) {
+  Message.create(req.body, function(err, msg) {
     if(err) { return handleError(res, err); }
-    return res.json(201, msgs);
+    return res.json(201, msg);
   });
 };
 

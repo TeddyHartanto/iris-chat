@@ -9,5 +9,5 @@ exports.register = function(socket) {
 }
 
 function onSave(socket, doc, cb) {
-	socket.emit('message:send, doc');
+	socket.emit('message:save', doc);
 }

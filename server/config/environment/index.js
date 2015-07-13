@@ -55,8 +55,7 @@ var all = {
 
   nusOpenId: {
     returnURL:    (process.env.DOMAIN || '') + '/auth/nus-openid/return',
-    realm:        (process.env.DOMAIN || '') + '/',
-    profile:      process.env.OPENID_PROFILE || false,
+    realm:        (process.env.DOMAIN || '') + '/'
   }
 };
 

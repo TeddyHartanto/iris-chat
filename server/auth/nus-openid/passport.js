@@ -5,7 +5,7 @@ module.exports.setup = function(User, config) {
 	passport.use(new NusStrategy({
 		returnURL: config.nusOpenId.returnURL,
 		realm: config.nusOpenId.realm,
-		profile: config.nusOpenId.profile
+		profile: true
 	},
 	function(identifier, profile, done){
 		User.findOne({

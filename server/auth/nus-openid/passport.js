@@ -8,9 +8,11 @@ module.exports.setup = function(User, config) {
 		profile: true
 	},
 	function(identifier, profile, done){
+		console.log("verify callback!");
 		User.findOne({
 			'nusOpenId.id': profile.id
-		}, function (err, user) {
+		},
+		function (err, user) {
 			if (err) {
 				return done(err);
 			}
@@ -20,7 +22,7 @@ module.exports.setup = function(User, config) {
 					email: profile.emails[0].value,
 					role: 'user',
 					username: profile.username,
-					provider: 'facebook',
+					provider: 'nus-openid',
 					nusOpenId: profile._json
 				});
 				user.save(function(err) {

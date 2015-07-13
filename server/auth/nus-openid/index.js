@@ -10,6 +10,7 @@ router
 		failureRedirect: '/signup', // this is an absolute path
 		session: false
 	}))
+
 	.get('/return', passport.authenticate('nus-openid', {
 		failureRedirect: '/signup',
 		session: false

@@ -26,4 +26,8 @@ angular.module('irisChatApp')
     $scope.loginOauth = function(provider) {
       $window.location.href = '/auth/' + provider;
     };
+
+    $scope.loginNusOpenId = function() {
+      $window.location.href = '/auth/nus-openid'; // redirect?
+    };
   });

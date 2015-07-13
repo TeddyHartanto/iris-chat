@@ -9,7 +9,7 @@ exports.setup = function (User, config) {
     function(email, password, done) { // this is the verify callback [teddy]
       User.findOne({
         email: email.toLowerCase()
-      }, function(err, user) {
+      }, function(err, user) { // all callbacks in Mongoose use the pattern: callback(err, result)
         if (err) return done(err);
 
         if (!user) {

@@ -18,5 +18,13 @@ angular.module('irisChatApp')
           id:'me'
         }
       }
+      /*
+      (From: https://docs.angularjs.org/api/ngResource/service/$resource) THESE ARE DEFAULTS:
+      'get':    {method:'GET'},
+      'save':   {method:'POST'},
+      'query':  {method:'GET', isArray:true},
+      'remove': {method:'DELETE'},
+      'delete': {method:'DELETE'}
+      */
 	  });
   });

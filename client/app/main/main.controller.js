@@ -22,8 +22,4 @@ angular.module('irisChatApp')
       // will listen to the event and act
       $scope.input = '';
     };
-
-    $scope.$on('$destroy', function () {
-      socket.unsyncUpdates('message');
-    });
   });

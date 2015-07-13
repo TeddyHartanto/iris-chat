@@ -51,6 +51,12 @@ var all = {
     clientID:     process.env.GOOGLE_ID || 'id',
     clientSecret: process.env.GOOGLE_SECRET || 'secret',
     callbackURL:  (process.env.DOMAIN || '') + '/auth/google/callback'
+  },
+
+  nusOpenId: {
+    returnURL:    (process.env.DOMAIN || '') + '/auth/nus-openid/return',
+    realm:        (process.env.DOMAIN || '') + '/',
+    profile:      process.env.OPENID_PROFILE || false,
   }
 };
 

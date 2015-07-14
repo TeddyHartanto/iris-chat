@@ -8,9 +8,8 @@ module.exports.setup = function(User, config) {
 		profile: true
 	},
 	function(identifier, profile, done){
-		console.log("verify callback!");
 		User.findOne({
-			'nusOpenId.id': profile.id
+			'nusOpenId.id': identifier
 		},
 		function (err, user) {
 			if (err) {
@@ -21,16 +20,15 @@ module.exports.setup = function(User, config) {
 					name: profile.displayName,
 					email: profile.emails[0].value,
 					role: 'user',
-					username: profile.username,
 					provider: 'nus-openid',
-					nusOpenId: profile._json
+					nusOpenId: identifier
 				});
 				user.save(function(err) {
 					if (err) done(err);
-					return done(err, user);
+					return done(null, user);
 				});
 			} else {
-				return done(err, user);
+				return done(null, user);
 			}
 		});
 	}

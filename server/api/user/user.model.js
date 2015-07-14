@@ -18,7 +18,7 @@ var UserSchema = new Schema({
   facebook: {},
   google: {},
   github: {},
-  nusOpenId: {}
+  nusOpenId: String
 });
 
 /**

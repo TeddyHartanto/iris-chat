@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('irisChatApp')
-  .controller('MainCtrl', function ($scope, $http, socket) {
+  .controller('MainCtrl', function ($scope, $http, socket, Auth) {
+    var user = Auth.getCurrentUser();
     $scope.messages = [];
 
     $http.get('api/messages').success(function(messages) {
@@ -17,9 +18,10 @@ angular.module('irisChatApp')
         return;
       }
       // save the message in mongoDB using POST method
-      $http.post('/api/messages', { text: $scope.input });
+      $http.post('/api/messages', { text: $scope.input, sender: user._id }); // use user._id, not user
       // after saving socket, message:save wil be emitted, socket.syncUpdates
       // will listen to the event and act
       $scope.input = '';
     };
+
   });

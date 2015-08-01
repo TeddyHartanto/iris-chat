@@ -3,8 +3,16 @@ var mongoose = require('mongoose'),
 
 var RoomSchema = new Schema({
 	chatters: [{ type: Schema.Types.ObjectId, ref: 'User'}],
-	numChatters: { type: Number, min: 2, max: 2 },
 	messages: [{ type: Schema.Types.ObjectId, ref: 'Message'}]
 });
+
+RoomSchema
+  .path('chatters')
+  .validate(function(chatters) {
+  	if (chatters.length <= 2 && chatters.length > 0)
+  		return true;
+  	else
+  		return false;
+  }, 'There should be either 1 or 2 user(s) in a room');
 
 module.exports = mongoose.model('Room', RoomSchema);

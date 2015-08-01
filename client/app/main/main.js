@@ -7,6 +7,11 @@ angular.module('irisChatApp')
         url: '/',
         templateUrl: 'app/main/main.html',
         controller: 'MainCtrl',
-        authenticate: true
+        authenticate: true,
+        resolve: {
+        	user: function(Auth) {
+        		return Auth.getCurrentUser();
+        	}
+        }
       });
   });

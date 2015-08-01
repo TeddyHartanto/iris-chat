@@ -1,6 +1,7 @@
 /* global io */
 'use strict';
 
+// injecting socket as a dependency will make the component connect to socket.io
 angular.module('irisChatApp')
   .factory('socket', function(socketFactory) {
 

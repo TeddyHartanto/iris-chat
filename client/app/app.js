@@ -45,18 +45,13 @@ angular.module('irisChatApp', [
   .run(function ($rootScope, $location, Auth, $state) {
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$stateChangeStart', function (event, next) { // [teddy] next is the toState
-      /*Auth.isLoggedInAsync(function(loggedIn) {
-        if (next.authenticate && !loggedIn) { // check whether toState needs authentication
+      Auth.isLoggedInAsync(function(loggedIn) {
+        if (next.authenticate && !loggedIn) { // check whether toState (in this case, next) needs authentication
+          event.preventDefault();
           $location.path('/login');
         }
-      });*/ // apparently somehow the MainCtrl is instantiated sometimes from login page to main page although authentication is required
+      });
+      // apparently somehow the MainCtrl is instantiated sometimes from login page to main page although authentication is required
       // because after modifying the Auth to be synchronous, there's still an unexpected behavior, i'll try event.preventDefault()
-      if (next.authenticate && !Auth.isLoggedIn()) {
-        event.preventDefault();
-        $state.go('login');
-      }
-      else {
-        $location.path(next.url);
-      }
     });
   });

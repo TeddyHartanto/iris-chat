@@ -74,6 +74,11 @@ angular.module('irisChatApp')
 
       joinRoom: function (userId) {
         socket.emit("joinRoom", userId);
+      },
+
+      logout: function() { // emit logout to be caught by server, to make the socket leave the room it was in before
+        socket.emit("logout");
       }
+
     };
   });

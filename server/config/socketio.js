@@ -8,7 +8,6 @@ var config = require('./environment');
 
 // When the user disconnects.. perform this
 function onDisconnect(socket) {
-  console.log(socket)
 }
 
 // When the user connects.. perform this
@@ -26,6 +25,12 @@ function onConnect(socket) {
   socket.on('joinRoom', function(userId) {
     require('../api/room/room.socket').findAvailableRoom(socket, userId);
   });
+
+  socket.on('logout', function() {
+    socket.leave(socket.rooms[0], function() {
+    });
+  });
+
 }
 
 module.exports = function (socketio) {

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('irisChatApp')
-  .controller('MainCtrl', function ($scope, $http, socket, user) {
+  .controller('MainCtrl', function ($scope, $http, socket, user) { // controller is constructed many times, unlike services
     var user = user;
     socket.joinRoom(user._id);
     $scope.messages = [];
@@ -24,5 +24,9 @@ angular.module('irisChatApp')
       // will listen to the event and act
       $scope.input = '';
     };
+
+    $scope.$on('logout', function() {
+      socket.logout();
+    });
 
   });

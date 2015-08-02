@@ -18,6 +18,7 @@ angular.module('irisChatApp')
     $scope.logout = function() {
       Auth.logout();
       $location.path('/login');
+      $scope.$emit('logout'); // emit to parents, and then main.controller can catch
     };
 
     $scope.isActive = function(route) {

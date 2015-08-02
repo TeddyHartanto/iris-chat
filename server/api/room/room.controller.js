@@ -10,10 +10,13 @@ var Room = require('./room.model');
 // Create a new chat room
 // exports.create is not a middleware, but instead used for server-side logic
 exports.create = function(aRoom) {
+	var createdRoom;
 	Room.create(aRoom, function(err, room) {
 		if (err) { return handleError(err); }
-		return room;
+		createdRoom = room;
+		console.log(createdRoom);
 	});
+	return createdRoom;
 };
 
 function handleError(err) {

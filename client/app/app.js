@@ -52,6 +52,6 @@ angular.module('irisChatApp', [
         }
       });
       // apparently somehow the MainCtrl is instantiated sometimes from login page to main page although authentication is required
-      // because after modifying the Auth to be synchronous, there's still an unexpected behavior, i'll try event.preventDefault()
+      // try: event.preventDefault()
     });
   });

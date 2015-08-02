@@ -10,4 +10,6 @@ exports.register = function(socket) {
 
 function onSave(socket, doc, cb) {
 	socket.emit('message:save', doc);
+	if (doc.text === 'rooms')
+		console.log(socket.rooms);
 }

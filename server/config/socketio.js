@@ -20,6 +20,18 @@ function onConnect(socket) {
   // Insert sockets below
   require('../api/thing/thing.socket').register(socket);
   require('../api/message/message.socket').register(socket);
+
+  // Changes made [teddy] starts here
+  socket.on('createRoom', function(userId) {
+    var Room = require('../api/room/room.model');
+    Room.create({
+      chatters: [userId]
+    }, function(err, room) {
+      if (err) { console.log(err); }
+      socket.leave(socket.rooms[0]);
+      socket.join(room._id);
+    })
+  });
 }
 
 module.exports = function (socketio) {

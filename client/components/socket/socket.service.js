@@ -70,6 +70,10 @@ angular.module('irisChatApp')
       unsyncUpdates: function (modelName) {
         socket.removeAllListeners(modelName + ':save');
         socket.removeAllListeners(modelName + ':remove');
+      },
+
+      createRoom: function (userId) {
+        socket.emit("createRoom", userId);
       }
     };
   });

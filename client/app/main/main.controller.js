@@ -3,6 +3,7 @@
 angular.module('irisChatApp')
   .controller('MainCtrl', function ($scope, $http, socket, user) {
     var user = user;
+    socket.createRoom(user._id);
     $scope.messages = [];
 
     $http.get('api/messages').success(function(messages) {

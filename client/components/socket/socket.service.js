@@ -72,8 +72,8 @@ angular.module('irisChatApp')
         socket.removeAllListeners(modelName + ':remove');
       },
 
-      createRoom: function (userId) {
-        socket.emit("createRoom", userId);
+      joinRoom: function (userId) {
+        socket.emit("joinRoom", userId);
       }
     };
   });

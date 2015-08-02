@@ -8,6 +8,7 @@ var config = require('./environment');
 
 // When the user disconnects.. perform this
 function onDisconnect(socket) {
+  console.log(socket)
 }
 
 // When the user connects.. perform this
@@ -22,15 +23,8 @@ function onConnect(socket) {
   require('../api/message/message.socket').register(socket);
 
   // Changes made [teddy] starts here
-  socket.on('createRoom', function(userId) {
-    var Room = require('../api/room/room.model');
-    Room.create({
-      chatters: [userId]
-    }, function(err, room) {
-      if (err) { console.log(err); }
-      socket.leave(socket.rooms[0]);
-      socket.join(room._id);
-    })
+  socket.on('joinRoom', function(userId) {
+    require('../api/room/room.socket').findAvailableRoom(socket, userId);
   });
 }
 

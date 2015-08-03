@@ -21,14 +21,8 @@ function onConnect(socket) {
   require('../api/thing/thing.socket').register(socket);
   require('../api/message/message.socket').register(socket);
 
-  // Changes made [teddy] starts here
-  socket.on('joinRoom', function(userId) {
-    require('../api/room/room.socket').findAvailableRoom(socket, userId);
-  });
-
   socket.on('logout', function() {
-    socket.leave(socket.rooms[0], function() {
-    });
+    socket.leave(socket.rooms[0]); // tested using callback, function as expected
   });
 
 }

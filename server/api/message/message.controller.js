@@ -12,7 +12,7 @@ var Message = require('./message.model');
 exports.index = function(req, res) {
   Message.find(function (err, msgs) {
     if(err) { return handleError(res, err); }
-    return res.json(200, msgs);
+    return res.json(200, msgs); // sent as an array [Obj1, Obj2]
   });
 };
 
@@ -20,7 +20,7 @@ exports.index = function(req, res) {
 exports.create = function(req, res) {
   Message.create(req.body, function(err, msg) {
     if(err) { return handleError(res, err); }
-    return res.json(201, msg);
+    return res.json(201, msg); // sent as an Object containing data (try it out in client side)
   });
 };
 

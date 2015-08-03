@@ -48,7 +48,8 @@ angular.module('irisChatApp', [
       Auth.isLoggedInAsync(function(loggedIn) {
         if (next.authenticate && !loggedIn) { // check whether toState (in this case, next) needs authentication
           event.preventDefault();
-          $location.path('/login');
+          $state.go('login'); // using $location.path will not redirect localhost:9000 to localhost:9000/login, use state.go instead
+          //$location.path('/login');
         }
       });
       // apparently somehow the MainCtrl is instantiated sometimes from login page to main page although authentication is required

@@ -9,7 +9,7 @@ var Room = require('./room.model');
 
 // Join a room or create a new one
 exports.join = function(req, res) {
-	Room.findOne({chatters: {$size: 1} }, function(err, room) {
+	Room.findOne({chatters: {$size: 1}, expired: false}, function(err, room) {
 		if (err) { handleError(res, err); }
 		if (room) {
 			room.chatters.push(req.body.userId);
@@ -35,7 +35,7 @@ exports.send = function(req, res) {
 		room.messages.push(req.body.msgId);
 		room.save(function(err) {
 			if (err) { handleError(res, err); }
-			console.log('message successfully pushed!'); // [debug]
+			// console.log('message successfully pushed!'); // [debug]
 			return res.json(201, room);
 		})
 	})

@@ -1,23 +1,28 @@
 'use strict';
 
 angular.module('irisChatApp')
-  .controller('MainCtrl', function ($scope, $http, socket, user) { // controller is constructed many times, unlike services
-    var user = user; // user should be resolved before the controller is instantiated as specified in ui-router wiki
-    var room;
+  .controller('MainCtrl', function ($scope, $http, socket, User) { // controller is constructed many times, unlike services
+    //var user = user; // user should be resolved before the controller is instantiated as specified in ui-router wiki
+    // Unfortunately, there was a bug when users login, logout, and then login again
+    // The users will not be registered inside the room
+    // Therefore, the main controller needs to be injected with User module
+    // And the room creation is done only after the user object has been retrieved
+    var user = User.get({}, function() {
+      var room;
+      $scope.messages = [];
 
-    $scope.messages = [];
-
-    console.log('User: ');
-    console.log(user); // [debug]
-    $http.post('api/rooms', { userId: user._id })
-      .then(function(res) { // res is response sent by $http.post
-        room = res.data;
-        console.log('Room: ');
-        console.log(room); // [debug]
-        socket.joinRoom(room._id);
-        $scope.send = sendMessage;
-        socket.syncMessages($scope.messages);
+      console.log('User: ');
+      console.log(user); // [debug]
+      $http.post('api/rooms', { userId: user._id })
+       .then(function(res) { // res is response sent by $http.post
+          room = res.data;
+          console.log('Room: ');
+          console.log(room); // [debug]
+          socket.joinRoom(room._id);
+          $scope.send = sendMessage;
+          socket.syncMessages($scope.messages);
       });
+    });
 
     /*$http.get('api/messages').success(function(messages) {
       $scope.messages = messages;

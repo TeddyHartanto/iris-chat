@@ -7,8 +7,15 @@ exports.register = function(socketio, socket) {
 	    socket.join(roomId);
 	});
 	socket.on('logout', function() { // done too
+		Room.findById(socket.rooms[1], function(err, room) {
+			if (err) { console.log(err); }
+			room.expired = true;
+			room.save(function(err) {
+				if (err) { console.log(err); }
+			});
+		});
 	    socket.leave(socket.rooms[1], function() {
-	    	console.log(socket.rooms);
+	    	// console.log(socket.rooms);
 	    });
 	});
 	socket.on('sendMessage', function(message) {

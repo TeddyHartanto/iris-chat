@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('irisChatApp')
-  .controller('MainCtrl', function ($scope, $http, socket, User) { // controller is constructed many times, unlike services
+  .controller('MainCtrl', function ($scope, $http, socket, User, $state) { // controller is constructed many times, unlike services
     //var user = user; // user should be resolved before the controller is instantiated as specified in ui-router wiki
     // Unfortunately, there was a bug when users login, logout, and then login again
     // The users will not be registered inside the room
@@ -22,6 +22,7 @@ angular.module('irisChatApp')
           socket.joinRoom(room._id);
           $scope.send = sendMessage;
           socket.syncMessages($scope.messages);
+          $scope.newSession = newSession;
       });
     });
 
@@ -45,7 +46,7 @@ angular.module('irisChatApp')
     };*/ // delete after the fn works normally when defined inside $http.post then
           // but keep comments
     $scope.$on('logout', function() {
-      socket.logout();
+      socket.leaveRoom();
     });
 
     function sendMessage() {
@@ -62,6 +63,11 @@ angular.module('irisChatApp')
           $http.post('/api/rooms/send', { roomId: room._id, msgId: msg._id});
         });
       $scope.input = '';
+    };
+
+    function newSession() {
+      socket.leaveRoom();
+      $state.reload();
     };
 
   });

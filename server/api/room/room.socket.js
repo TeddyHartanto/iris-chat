@@ -6,7 +6,7 @@ exports.register = function(socketio, socket) {
 	socket.on('joinRoom', function(roomId) { // done (tested using console.log)
 	    socket.join(roomId);
 	});
-	socket.on('logout', function() { // done too
+	socket.on('leaveRoom', function() { // done too
 		Room.findById(socket.rooms[1], function(err, room) {
 			if (err) { console.log(err); }
 			room.expired = true;

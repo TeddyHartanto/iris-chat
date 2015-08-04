@@ -9,26 +9,34 @@ var Room = require('./room.model');
 
 // Join a room or create a new one
 exports.join = function(req, res) {
-	Room.findOne({chatters: {$size: 1}, expired: false}, function(err, room) {
-		if (err) { handleError(res, err); }
-		if (room) {
-			room.chatters.push(req.body.userId);
-			room.save(function(err) {
-				if (err) { handleError(res, err); }
-				return res.json(200, room);
-			});
+	Room.findOne({ chatters: req.body.userId, expired: false }, function(err, existingRoom) {
+		if (err) { handleErro(res, err); }
+		if (existingRoom) {
+			return res.json(200, existingRoom);
 		}
 		else {
-			var timestamp = new Date();
-			var aRoom = {}
-			aRoom.chatters = [req.body.userId];
-			aRoom.timestamp = timestamp.toDateString().substring(4);
-			Room.create(aRoom, function(err, newRoom) {
+			Room.findOne({ chatters: {$size: 1}, expired: false}, function(err, room) {
 				if (err) { handleError(res, err); }
-				return res.json(201, newRoom);
-			})
+				if (room) {
+					room.chatters.push(req.body.userId);
+					room.save(function(err) {
+						if (err) { handleError(res, err); }
+						return res.json(200, room);
+					});
+				}
+				else {
+					var timestamp = new Date();
+					var aRoom = {}
+					aRoom.chatters = [req.body.userId];
+					aRoom.timestamp = timestamp.toDateString().substring(4);
+					Room.create(aRoom, function(err, newRoom) {
+						if (err) { handleError(res, err); }
+						return res.json(201, newRoom);
+					});
+				}
+			});
 		}
-	})
+	});
 };
 
 // push a message to the room the user is currently in

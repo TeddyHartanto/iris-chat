@@ -5,5 +5,6 @@ var express = require('express'),
 	router = express.Router();
 
 router.post('/', controller.join);
+router.post('/send', controller.send);
 
 module.exports = router;

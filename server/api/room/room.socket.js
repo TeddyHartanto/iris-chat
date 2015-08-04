@@ -2,13 +2,18 @@
 
 var Room = require('./room.model');
 
-exports.register = function(socket) {
-	Room.schema.post('save', function(doc) {
-		onSave(socket, doc);
+exports.register = function(socketio, socket) {
+	socket.on('joinRoom', function(roomId) { // done (tested using console.log)
+	    socket.join(roomId);
 	});
-}
-
-function onSave(socket, doc, cb) {
-	socket.leave(socket.rooms[0]);
-	socket.join(socket.room._id);
+	socket.on('logout', function() { // done too
+	    socket.leave(socket.rooms[1], function() {
+	    	console.log(socket.rooms);
+	    });
+	});
+	socket.on('sendMessage', function(message) {
+		console.log('server got the message: ' + message);
+		console.log(socket.rooms[1]);
+		socketio.to(socket.rooms[1]).emit('sendMessage', message);
+	});
 }

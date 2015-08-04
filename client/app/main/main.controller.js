@@ -5,27 +5,29 @@ angular.module('irisChatApp')
     var user = user; // user should be resolved before the controller is instantiated as specified in ui-router wiki
     var room;
 
-    console.log(user); // [debug]
-    $http.post('api/rooms', { userId: user._id })
-      .then(function(data) {
-        room = data.data;
-        console.log(room); // [debug]
-      })
-      .then(function() {
-
-      });
-
     $scope.messages = [];
 
-    $http.get('api/messages').success(function(messages) {
+    console.log('User: ');
+    console.log(user); // [debug]
+    $http.post('api/rooms', { userId: user._id })
+      .then(function(res) { // res is response sent by $http.post
+        room = res.data;
+        console.log('Room: ');
+        console.log(room); // [debug]
+        socket.joinRoom(room._id);
+        $scope.send = sendMessage;
+        socket.syncMessages($scope.messages);
+      });
+
+    /*$http.get('api/messages').success(function(messages) {
       $scope.messages = messages;
       socket.syncUpdates('message', $scope.messages);
-    });
+    });*/
 
     $scope.features = ['Ftr1', 'Ftr2', 'Ftr3'];
     $scope.input = '';
 
-    $scope.send = function() {
+    /*$scope.send = function() {
       if ($scope.input === '') {
         return;
       }
@@ -34,10 +36,26 @@ angular.module('irisChatApp')
       // after saving socket, sendMessage wil be emitted, socket.syncUpdates
       // will listen to the event and act
       $scope.input = '';
-    };
-
+    };*/ // delete after the fn works normally when defined inside $http.post then
+          // but keep comments
     $scope.$on('logout', function() {
       socket.logout();
     });
+
+    function sendMessage() {
+      var msg;
+      if ($scope.input === '') {
+        return;
+      }
+      // first create the message
+      $http.post('/api/messages', { text: $scope.input, sender: user._id })
+        .then(function(res) { // and then push the message to the room
+          var msg = res.data;
+          // console.log(msg);
+          socket.sendMessage(msg);
+          $http.post('/api/rooms/send', { roomId: room._id, msgId: msg._id});
+        });
+      $scope.input = '';
+    };
 
   });

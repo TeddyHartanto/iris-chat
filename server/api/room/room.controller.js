@@ -27,6 +27,20 @@ exports.join = function(req, res) {
 	})
 };
 
+// push a message to the room the user is currently in
+// needs roomId and msgId
+exports.send = function(req, res) {
+	Room.findById(req.body.roomId, function(err, room) {
+		if (err) { handleError(res, err); }
+		room.messages.push(req.body.msgId);
+		room.save(function(err) {
+			if (err) { handleError(res, err); }
+			console.log('message successfully pushed!'); // [debug]
+			return res.json(201, room);
+		})
+	})
+};
+
 function handleError(res, err) {
 	return res.send(500, err);
 }

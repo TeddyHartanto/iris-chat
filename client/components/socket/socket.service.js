@@ -19,7 +19,7 @@ angular.module('irisChatApp')
     return {
       socket: socket,
 
-      /**
+    /*  /**
        * Register listeners to sync an array with updates on a model
        *
        * Takes the array we want to sync, the model name that socket updates are sent from,
@@ -28,13 +28,13 @@ angular.module('irisChatApp')
        * @param {String} modelName
        * @param {Array} array
        * @param {Function} cb
-       */
+       *
       syncUpdates: function (modelName, array, cb) {
         cb = cb || angular.noop;
 
         /**
          * Syncs item creation/updates on 'model:save'
-         */
+         *
         socket.on(modelName + ':save', function (item) {
           var oldItem = _.find(array, {_id: item._id});
           var index = array.indexOf(oldItem);
@@ -54,13 +54,13 @@ angular.module('irisChatApp')
 
         /**
          * Syncs removed items on 'model:remove'
-         */
+         *
         socket.on(modelName + ':remove', function (item) {
           var event = 'deleted';
           _.remove(array, {_id: item._id});
           cb(event, item, array);
         });
-      },
+      }, */
 
       /**
        * Removes listeners for a models updates on the socket
@@ -74,6 +74,25 @@ angular.module('irisChatApp')
 
       logout: function() { // emit logout to be caught by server, to make the socket leave the room it was in before
         socket.emit('logout');
+      },
+
+      joinRoom: function(roomId) {
+        socket.emit('joinRoom', roomId);
+      },
+
+      syncMessages: function(messages) {
+        /**
+         * Syncs messages in the room this socket is in on 'sendMessage'
+         */
+        socket.on('sendMessage', function(message) {
+          messages.push(message);
+          // console.log('Messages: ');
+          // console.log(messages);
+        });
+      },
+
+      sendMessage: function(message) {
+        socket.emit('sendMessage', message);
       }
 
     };

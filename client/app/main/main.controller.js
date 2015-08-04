@@ -7,9 +7,10 @@ angular.module('irisChatApp')
     // The users will not be registered inside the room
     // Therefore, the main controller needs to be injected with User module
     // And the room creation is done only after the user object has been retrieved
+    var room;
+    $scope.messages = [];
+
     var user = User.get({}, function() {
-      var room;
-      $scope.messages = [];
 
       console.log('User: ');
       console.log(user); // [debug]

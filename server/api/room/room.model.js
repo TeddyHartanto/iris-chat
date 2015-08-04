@@ -4,7 +4,8 @@ var mongoose = require('mongoose'),
 var RoomSchema = new Schema({
 	chatters: [{ type: Schema.Types.ObjectId, ref: 'User'}],
 	messages: [{ type: Schema.Types.ObjectId, ref: 'Message'}],
-  expired: {type: Boolean, default: false}
+  expired: {type: Boolean, default: false},
+  timestamp: String
 });
 
 RoomSchema

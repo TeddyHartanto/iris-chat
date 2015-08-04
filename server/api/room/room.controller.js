@@ -19,7 +19,11 @@ exports.join = function(req, res) {
 			});
 		}
 		else {
-			Room.create({ chatters: [req.body.userId]}, function(err, newRoom) {
+			var timestamp = new Date();
+			var aRoom = {}
+			aRoom.chatters = [req.body.userId];
+			aRoom.timestamp = timestamp.toDateString().substring(4);
+			Room.create(aRoom, function(err, newRoom) {
 				if (err) { handleError(res, err); }
 				return res.json(201, newRoom);
 			})

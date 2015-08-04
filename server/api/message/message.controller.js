@@ -18,6 +18,8 @@ exports.index = function(req, res) {
 
 // Creates a new message in the DB.
 exports.create = function(req, res) {
+  var timestamp = new Date();
+  req.body.timestamp = timestamp.getHours() + ':' + timestamp.getMinutes();
   Message.create(req.body, function(err, msg) {
     if(err) { return handleError(res, err); }
     return res.json(201, msg); // sent as an Object containing data (try it out in client side)

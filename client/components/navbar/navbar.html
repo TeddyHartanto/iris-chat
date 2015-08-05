@@ -16,11 +16,11 @@
           <a ng-href="{{item.link}}" ng-click="isCollapsed = !isCollapsed">{{item.title}}</a>
         </li>
         <li ng-show="isAdmin()" ng-class="{active: isActive('/admin')}"><a href="/admin">Admin</a></li>
-        <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}"><a href="/signup" ng-click="isCollapsed = !isCollapsed">Sign up</a></li>
-        <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="/login" ng-click="isCollapsed = !isCollapsed">Login</a></li>
+        <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/signup')}"><a href="/signup" ng-click="isCollapsed = true">Sign up</a></li>
+        <li ng-hide="isLoggedIn()" ng-class="{active: isActive('/login')}"><a href="/login" ng-click="isCollapsed = true">Login</a></li>
         <li ng-show="isLoggedIn()"><p class="navbar-text">Hello {{ getCurrentUser().name }}</p> </li>
-        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}"><a href="/settings" ng-click="isCollapsed = !isCollapsed"><span class="glyphicon glyphicon-cog"></span></a></li>
-        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()" ng-click="isCollapsed = !isCollapsed">Logout</a></li>
+        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/settings')}"><a href="/settings" ng-click="isCollapsed = true"><span class="glyphicon glyphicon-cog"></span></a></li>
+        <li ng-show="isLoggedIn()" ng-class="{active: isActive('/logout')}"><a href="" ng-click="logout()" ng-click="isCollapsed = true">Logout</a></li>
       </ul>
     </div>
   </div>

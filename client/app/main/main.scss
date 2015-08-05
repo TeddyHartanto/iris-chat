@@ -56,3 +56,43 @@
     border-color: #666;
     border-radius: 4px;
 }
+
+#chat-section {
+    height: 800px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+#chat-box {
+    height: 520px;
+    background-color: #fff;
+    border-radius: 1.2em 1.2em 0 0;
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 0;
+    border-style: solid;
+    border-color: #aaa;
+    border-collapse: collapse;
+    overflow-y: auto;
+    padding-top: 20px;
+    padding-left: 20px;
+}
+
+#input-box {
+    padding: 20px;
+    height: 80px;
+    border-radius: 0 0 1.2em 1.2em;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-top-width: 0;
+    border-style: solid;
+    border-color: #aaa;
+    border-collapse: collapse;
+    background-color: rgba(24, 158, 135, 0.7);
+}
+
+.btn-primary {
+    background-color: #18949e;
+}

@@ -1,6 +1,56 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
 <!-- changes made by teddy -->
+
+<section id="chat-section">
+  <div class="container">
+    <div class="row">
+
+      <!-- where messages are rendered -->
+      <div class="col-md-8 col-md-offset-2" id="chat-box">
+        <div ng-repeat="msg in messages track by $index">
+          <div class="row">
+            <div class="col-md-2">
+              <span>{{msg.sender|senderFilter:userId}}</span>
+            </div>
+            <div class="col-md-8">
+              <p>{{msg.text}}</p>
+            </div>
+            <div class="col-md-2">
+              <span>{{msg.timestamp}}</span>
+            </div>
+          </div>
+          <!-- if just msg, this wil display the JSON object, with quotations over fields -->
+        </div>
+      </div>
+
+      <!-- where input box is -->
+      <div class="col-md-8 col-md-offset-2" id="input-box">
+          <form ng-submit="send()">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Type your message here..." ng-model="input" submit="send()">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit" ng-click="send()">send</button>
+              </span>
+            </div>
+          </form>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
 <div class="container">
   <div class="container" id="chatapp">
     <div class="row">

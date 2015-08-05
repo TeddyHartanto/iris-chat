@@ -23,6 +23,7 @@ angular.module('irisChatApp')
           $scope.send = sendMessage;
           socket.syncMessages($scope.messages);
           $scope.newSession = newSession;
+          $scope.userId = user._id;
       });
     });
 

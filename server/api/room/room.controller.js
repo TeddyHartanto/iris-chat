@@ -53,6 +53,13 @@ exports.send = function(req, res) {
 	})
 };
 
+exports.getRooms = function(req, res) {
+	Room.find({chatters: req.body.userId})
+	// querying an objectid reference in an array
+	// db.rooms.find({chatters: ObjectId("55c1f7649e95a200232ddb54")})
+	// specifying 2 conditions of the same field
+	// db.rooms.find({ $and: [{chatters: ObjectId("55c1f7649e95a200232ddb54")}, {chatters: {$size: 2}}]})
+}
 function handleError(res, err) {
 	return res.send(500, err);
 }

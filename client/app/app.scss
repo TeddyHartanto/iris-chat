@@ -15,10 +15,16 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
     padding: 0.2em 0;
 }
 
+body {
+	background-color: rgba(24, 158, 135, 0.1);
+}
+
 // Component styles are injected through grunt
 // injector
+@import 'about/about.scss';
 @import 'account/login/login.scss';
 @import 'admin/admin.scss';
+@import 'history/history.scss';
 @import 'main/main.scss';
 @import 'modal/modal.scss';
 @import 'navbar/navbar.scss';

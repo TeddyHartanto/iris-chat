@@ -7,7 +7,10 @@ angular.module('irisChatApp')
       'link': '/'
     }, {
       'title': 'About',
-      'link': '#'
+      'link': '/about'
+    }, {
+      'title': 'History',
+      'link': '/history'
     }];
 
     $scope.isCollapsed = true;

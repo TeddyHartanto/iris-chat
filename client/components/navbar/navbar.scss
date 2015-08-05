@@ -1,0 +1,119 @@
+.navbar-default {
+  left: 0px;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  background-color: #189e87;
+  border-color: #189e87;
+  font-weight: 300;
+  border: none;
+  margin-bottom: 0;
+  // background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 0), rgba(195, 227, 222, 0.4) 79%);
+  // background-image: linear-gradient(to top, rgba(0, 0, 0, 0), rgba(195, 227, 222, 0.4) 79%);
+}
+
+.navbar-default .navbar-brand {
+  color: #fff;
+  font-size: 24px;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #fff;
+  font-weight: 400;
+  background-color: transparent;
+}
+.navbar-default .navbar-text {
+  color: #fff;
+  font-weight: 300;
+  font-family: Ubuntu, Helvetica, sans-serif;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #fff;
+  font-weight: 300;
+  font-size: 16px;
+  font-family: Ubuntu, Helvetica, sans-serif;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #fff;
+  font-weight: 400;
+  border-bottom: 5px solid #fff;
+  padding-bottom: 10px;
+  background-color: transparent;
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.09) 62%);
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.09) 62%);
+  // the percentage is for the position (you know the bar that has 2 colors in gradient? there's a color slider -> that's it!)
+  text-decoration: none;
+  text-shadow: white 0px 0px 1px;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  background-color: inherit;
+  color: #fff;
+  font-weight: 400;
+  background-color: rgba(0, 0, 0, 0.25);
+  text-decoration: none;
+  text-shadow: white 0px 0px 1px;
+}
+.navbar-default .navbar-toggle {
+  border-color: #fff;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: rgba(0, 0, 0, 0.11);
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #fff;
+}
+
+
+
+
+
+@media (max-width: 767px) {
+  .navbar-nav > li > a {
+    text-align: center;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #777777;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #333333;
+    background-color: transparent;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #555555;
+    background-color: #e7e7e7;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus {
+    color: #cccccc;
+    background-color: transparent;
+  }
+}
+.navbar-default .navbar-link {
+  color: #777777;
+}
+.navbar-default .navbar-link:hover {
+  color: #333333;
+}
+.navbar-default .btn-link {
+  color: #777777;
+}
+.navbar-default .btn-link:hover,
+.navbar-default .btn-link:focus {
+  color: #333333;
+}
+.navbar-default .btn-link[disabled]:hover,
+fieldset[disabled] .navbar-default .btn-link:hover,
+.navbar-default .btn-link[disabled]:focus,
+fieldset[disabled] .navbar-default .btn-link:focus {
+  color: #cccccc;
+}

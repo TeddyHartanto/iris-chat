@@ -23,3 +23,74 @@ $btnGithubBackgroundHighlight:      #ccc;
 .btn-github {
   @include button-variant($btnTextAlt, $btnGithubBackground, $btnGithubBackgroundHighlight);
 }
+
+//intro start
+
+#intro .jumbotron {
+	position: relative;
+	display: block;
+	background-image: url("https://farm8.staticflickr.com/7109/8162168092_af4fcbb4da_b.jpg");
+	background-size: cover;
+	height: 500px;
+	margin-bottom: 0;
+}
+
+#intro {
+	background-color: rgba(24, 158, 135, 0.3);
+}
+
+#intro > .container {
+	position: relative;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+#intro-word {
+	position: absolute;
+	width: 40%;
+}
+
+#intro-word > h1,
+#intro-word > p {
+	color: #fff;
+}
+
+#intro-word > h1 {
+	border: 1px solid #fff;
+	display: inline-block;
+	padding: 5px;
+}
+
+// intro end
+
+// features start
+#features {
+	padding: 20px;
+	background-color: #fff;
+}
+
+#features > .container > #chat,
+#features > .container > #history {
+	display: inline-block;
+}
+
+#features img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#features p {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+// features end
+
+
+
+@media (max-width: 767px) {
+	#intro .jumbotron {
+		height: 300px;
+	}
+}

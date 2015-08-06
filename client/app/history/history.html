@@ -1,1 +1,12 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
+
+<section id="history-section">
+	<div class="container">
+		<div class="list-group">
+			<a class="list-group-item" href="/history/{{room._id}}" ng-repeat="room in rooms"> <!-- need track by $index? -->
+    		{{room.timestamp}}
+  		</a>
+		</div>
+	</div>
+	{{rooms}}
+</section>

@@ -6,6 +6,7 @@
 'use strict';
 
 var Room = require('./room.model');
+var ObjectId = require('mongoose').Types.ObjectId;
 
 // Join a room or create a new one
 exports.join = function(req, res) {
@@ -28,7 +29,8 @@ exports.join = function(req, res) {
 					var timestamp = new Date();
 					var aRoom = {}
 					aRoom.chatters = [req.body.userId];
-					aRoom.timestamp = timestamp.toDateString().substring(4);
+					aRoom.timestamp = timestamp.toDateString().substring(4) + ', '
+									+ timestamp.getHours() + ':' + timestamp.getMinutes();
 					Room.create(aRoom, function(err, newRoom) {
 						if (err) { handleError(res, err); }
 						return res.json(201, newRoom);
@@ -53,13 +55,28 @@ exports.send = function(req, res) {
 	})
 };
 
-exports.getRooms = function(req, res) {
-	Room.find({chatters: req.body.userId})
+exports.getHistory = function(req, res) {
+	Room.find({ $and: [{ chatters: new ObjectId(req.params.userId)}, { chatters: { $size: 2 }}]}, function(err, rooms) {
+		if (err) { handleError(res, err); }
+		return res.json(200, rooms);
+	})
 	// querying an objectid reference in an array
 	// db.rooms.find({chatters: ObjectId("55c1f7649e95a200232ddb54")})
 	// specifying 2 conditions of the same field
 	// db.rooms.find({ $and: [{chatters: ObjectId("55c1f7649e95a200232ddb54")}, {chatters: {$size: 2}}]})
 }
+
+exports.show = function(req, res) {
+	Room.findById(req.params.roomId)
+		.populate('messages')
+		.exec(function(err, room) {
+			if (err) return handleError(res, err);
+			return res.send(200, room);
+		});
+		// either populate document or populate query --> look at the api docs, below is populate by document
+		// room.populate('messages.message') ?
+}
+
 function handleError(res, err) {
 	return res.send(500, err);
 }

@@ -6,5 +6,7 @@ var express = require('express'),
 
 router.post('/', controller.join);
 router.post('/send', controller.send);
+router.get('/:userId/history', controller.getHistory);
+router.get('/:roomId', controller.show);
 
 module.exports = router;

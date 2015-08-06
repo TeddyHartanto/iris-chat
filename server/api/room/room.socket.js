@@ -19,8 +19,8 @@ exports.register = function(socketio, socket) {
 	    });
 	});
 	socket.on('sendMessage', function(message) {
-		console.log('server got the message: ' + message);
-		console.log(socket.rooms[1]);
+		// console.log('server got the message: ' + message);
+		// console.log(socket.rooms[1]);
 		socketio.to(socket.rooms[1]).emit('sendMessage', message);
 	});
 }

@@ -10,6 +10,10 @@ angular.module('irisChatApp')
     var room;
     $scope.messages = [];
 
+    // set a variable to indicate whether there's another chatter or not
+    // sync the socket with that variable, so when someone connect, the variable is flagged
+    // use that flag to disable/enable the send and input
+
     var user = User.get({}, function() {
 
       console.log('User: ');

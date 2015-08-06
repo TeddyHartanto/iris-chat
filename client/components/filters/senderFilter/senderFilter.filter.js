@@ -3,9 +3,13 @@
 angular.module('irisChatApp')
   .filter('senderFilter', function () {
     return function (input, userId) {
-    	if (input === userId)
-    		return "You";
-    	else
-    		return "Stranger";
+    	if (input === "System")
+    		return "System";
+    	else {
+	    	if (input === userId)
+	    		return "You";
+	    	else
+	    		return "Stranger";
+	    }
     };
   });

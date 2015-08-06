@@ -80,6 +80,10 @@ angular.module('irisChatApp')
         socket.emit('joinRoom', roomId);
       },
 
+      secondUser: function() {
+        socket.emit('secondUser');
+      },
+
       syncMessages: function(messages) {
         /**
          * Syncs messages in the room this socket is in on 'sendMessage'
@@ -88,6 +92,12 @@ angular.module('irisChatApp')
           messages.push(message);
           // console.log('Messages: ');
           // console.log(messages);
+        });
+
+        socket.on('secondUser', function() {
+          var timestamp = new Date();
+          messages.push({ sender: "System", text: "Another user has connected. You may start chatting now. Say hi! :)",
+                          timestamp: timestamp.getHours() + ':' + timestamp.getMinutes()});
         });
       },
 

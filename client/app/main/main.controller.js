@@ -22,6 +22,7 @@ angular.module('irisChatApp')
       $http.post('api/rooms', { userId: user._id })
        .then(function(res) { // res is response sent by $http.post
           room = res.data;
+          $scope.room = room; // --> to keep track of changes in room
           console.log('Room: ');
           console.log(room); // [debug]
           socket.joinRoom(room._id);
@@ -35,9 +36,37 @@ angular.module('irisChatApp')
       $scope.messages = messages;
       socket.syncUpdates('message', $scope.messages);
     });*/
-
-    $scope.features = ['Ftr1', 'Ftr2', 'Ftr3'];
     $scope.input = '';
+
+    // when this controller is initialized, the value being watched is always 0
+    // if oldVal === 0, newVal === 1 --> first user has connected
+    // if oldVal === 0, newVal === 2 --> second user has connected
+    $scope.$watch(function(scope) {
+      if (room)
+        return room.chatters.length;
+      else
+        return 0;
+    },  function(newVal, oldVal) {
+          if (newVal === 1 && oldVal === 0) {
+            var timestamp = new Date();
+            // the message below is local to each user
+            $scope.messages.push({sender: "System", text: "You are connected! :)",
+                                  timestamp: timestamp.getHours() + ':' + timestamp.getMinutes()})
+          }
+          if (newVal === 2 && oldVal === 0) {
+            var timestamp = new Date();
+            // the message below is local to each user
+            $scope.messages.push({sender: "System", text: "You are connected! :)",
+                      timestamp: timestamp.getHours() + ':' + timestamp.getMinutes()})
+            socket.secondUser();
+        }
+    });
+
+   /* if ($scope.room.chatters.length == 2) {
+        var timestamp = new Date();
+        $scope.messages.push({sender: "System", text: "Another user has connected. You may start chatting now. Say hi! :)",
+                              timestamp: timestamp.getHours() + ':' + timestamp.getMinutes()})
+    } */
 
     /*$scope.send = function() {
       if ($scope.input === '') {

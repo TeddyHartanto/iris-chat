@@ -111,13 +111,41 @@ pre {
 }
 // FEATURES END ==================================================
 
+// GET-STARTED START =============================================
+
+#get-started h1 {
+	text-align: center;
+	color: #158874;
+}
+
+#get-started p {
+	text-align: center;
+}
+
+#get-started .btn-primary {
+	background-color: #18949e;
+	padding: 15px;
+	font-size: 18px;
+}
+
+#get-started .btn-primary:hover,
+#get-started .btn-primary:focus,
+#get-started .btn-primary:active,
+#get-started .btn-primary.active {
+    color: #fff;
+    background-color: #116b72;
+    border-color: #0e565c;
+}
+
+// GET-STARTED END ===============================================
+
 @media (max-width: 1200px) {
 	#intro .jumbotron {
 		height: 500px;
 	}
 }
 
-@media (max-width: 992px) {
+@media (max-width: 992px) {ds
 	#intro .jumbotron {
 		height: 400px;
 	}

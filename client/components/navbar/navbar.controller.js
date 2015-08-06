@@ -6,9 +6,6 @@ angular.module('irisChatApp')
       'title': 'Chat',
       'link': '/'
     }, {
-      'title': 'About',
-      'link': '/about'
-    }, {
       'title': 'History',
       'link': '/history'
     }];
@@ -21,7 +18,7 @@ angular.module('irisChatApp')
     $scope.logout = function() {
       Auth.logout();
       $location.path('/login');
-      $scope.$emit('logout'); // emit to parents, and then main.controller can catch
+      $scope.$emit('logout'); // emit to parents until $rootScope, and then main.controller can catch
     };
 
     $scope.isActive = function(route) {

@@ -1,6 +1,9 @@
 /**
  * Using Rails-like standard naming convention for endpoints.
- * POST    /rooms              ->  create
+ * POST    /rooms              ->  either find an available room or create a new one
+ * POST	   /rooms/send		   ->  push message into the room for storing in database
+ * GET     /usersId/history    ->  get a list of rooms where one of the chatters is the user with the given userId
+ * GET     /rooms/roomId       ->  get the room specified by the roomId
  */
 
 'use strict';
@@ -53,23 +56,20 @@ exports.send = function(req, res) {
 		room.messages.push(req.body.msgId);
 		room.save(function(err) {
 			if (err) { handleError(res, err); }
-			// console.log('message successfully pushed!'); // [debug]
 			return res.json(201, room);
 		})
 	})
 };
 
+// given the userId, show the list of rooms that contains that user and the room must be the ones that contains 2 chatters
 exports.getHistory = function(req, res) {
 	Room.find({ $and: [{ chatters: new ObjectId(req.params.userId)}, { chatters: { $size: 2 }}]}, function(err, rooms) {
 		if (err) { handleError(res, err); }
 		return res.json(200, rooms);
 	})
-	// querying an objectid reference in an array
-	// db.rooms.find({chatters: ObjectId("55c1f7649e95a200232ddb54")})
-	// specifying 2 conditions of the same field
-	// db.rooms.find({ $and: [{chatters: ObjectId("55c1f7649e95a200232ddb54")}, {chatters: {$size: 2}}]})
 }
 
+// given the roomId, show the room
 exports.show = function(req, res) {
 	Room.findById(req.params.roomId)
 		.populate('messages')
@@ -77,8 +77,6 @@ exports.show = function(req, res) {
 			if (err) return handleError(res, err);
 			return res.send(200, room);
 		});
-		// either populate document or populate query --> look at the api docs, below is populate by document
-		// room.populate('messages.message') ?
 }
 
 function handleError(res, err) {

@@ -3,9 +3,15 @@
 <section id="history-section">
 	<div class="container">
 		<div class="list-group">
-			<a class="list-group-item" href="/history/{{room._id}}" ng-repeat="room in rooms"> <!-- need track by $index? -->
+			<a class="list-group-item" href="/history/{{room._id}}" ng-repeat="room in rooms">
     		{{room.timestamp}}
   		</a>
 		</div>
 	</div>
 </section>
+
+<footer class="footer">
+  <div class="container">
+      <p>IRISchat &copy</p>
+  </div>
+</footer>

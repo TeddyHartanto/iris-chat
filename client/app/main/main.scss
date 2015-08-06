@@ -1,66 +1,14 @@
 .footer {
     text-align: center;
-    padding: 30px 0;
+    padding: 20px 0;
     margin-top: 70px;
     border-top: 1px solid #E5E5E5;
-}
-
-
-
-
-// CHANGES MADE BY TEDDY
-
-.chat-form {
-    margin: 20px 0;
-}
-
-#chatbox {
-    padding: 0px;
-    height: 600px;
-    border-right: 1px;
-    border-left: 0px;
-    border-top: 0px;
-    border-bottom: 0px;
-    border-style: solid;
-    border-color: #666;
-}
-
-#chatbox section {
-    height: 520px;
-    overflow: auto;
-    padding: 15px;
-}
-
-#chatbox aside {
-    height: 520px;
-    padding: 15px;
-    overflow: hidden;
-}
-
-#chatbox footer {
-    padding: 10px;
-    height: 60px;
-    border-top: 1px;
-    border-right: 0px;
-    border-bottom: 0px;
-    border-left: 0px;
-    border-color: #666;
-    border-style: solid;
-}
-
-#chatapp {
-    border-width: 1px;
-    border-style: solid;
-    height: 600px;
-    background-color: #fff;
-    border-color: #666;
-    border-radius: 4px;
 }
 
 // CHAT SECTION AND CHAT BOX =================================
 
 #chat-section {
-    height: 800px;
+    height: 700px;
     padding-top: 60px;
     padding-bottom: 60px;
 }

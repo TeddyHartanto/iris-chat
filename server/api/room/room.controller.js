@@ -26,11 +26,15 @@ exports.join = function(req, res) {
 					});
 				}
 				else {
-					var timestamp = new Date();
+					var timestamp = new Date(), hours = timestamp.getHours(), minutes = timestamp.getMinutes();
+					if (hours/10 < 1) hours = '0' + hours;
+					if (minutes/10 < 1) minutes = '0' + minutes;
+
 					var aRoom = {}
 					aRoom.chatters = [req.body.userId];
 					aRoom.timestamp = timestamp.toDateString().substring(4) + ', '
-									+ timestamp.getHours() + ':' + timestamp.getMinutes();
+									+ hours + ':' + minutes;
+
 					Room.create(aRoom, function(err, newRoom) {
 						if (err) { handleError(res, err); }
 						return res.json(201, newRoom);

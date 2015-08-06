@@ -57,6 +57,8 @@
     border-radius: 4px;
 }
 
+// CHAT SECTION AND CHAT BOX =================================
+
 #chat-section {
     height: 800px;
     padding-top: 60px;
@@ -80,7 +82,7 @@
 }
 
 #input-box {
-    padding: 20px;
+    padding: 0;
     height: 80px;
     border-radius: 0 0 1.2em 1.2em;
     border-left-width: 1px;
@@ -105,3 +107,122 @@
     background-color: #116b72;
     border-color: #0e565c;
 }
+
+#input-box .input-group {
+    width: 84%;
+    float: left;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+#input-box #new {
+    float:left;
+    border-radius: 0 0 0 1.2em;
+    height: 100%;
+    width: 10%;
+    letter-spacing: 1px;
+    font-weight: 600px;
+    border: 0;
+}
+
+// END OF CHAT SECTION ==============================================
+
+// MESSAGES DISPLAY =================================================
+
+#sender {
+    font-weight: 700;
+    font-size: 16px
+}
+.You {
+    color: #189e87;
+}
+.Stranger {
+    color: #9e182f;
+}
+.System {
+    color: #54625f;
+}
+
+#text {
+    font-size: 16px;
+}
+
+#time {
+    font-size: 16px;
+    color: #999;
+}
+
+// END OF MESSAGES DISPLAY ==========================================
+
+// RESPONSIVENESS ===================================================
+
+// apply styles from the greatest width to the smallest
+@media (max-width: 767px) {
+    #chat-section {
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
+    #chat-box {
+        height: 460px;
+        border-radius: 0 0 0 0;
+    }
+    #input-box {
+        height: 55px;
+        border-radius: 0 0 0 0;
+    }
+    #input-box #new {
+        border-bottom-left-radius: 0;
+    }
+    #input-box .input-group {
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+    #sender {
+        font-size: 15px;
+    }
+    #text {
+        font-size: 15px;
+    }
+    #time {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 479px) {
+    #chat-section {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    #chat-box {
+        padding-left: 2px;
+        height: 380px;
+        border-radius: 0 0 0 0;
+    }
+    #input-box {
+        height: 55px;
+        border-radius: 0 0 0 0;
+    }
+    #input-box #new {
+        padding-left: 6px;
+        width: 15%;
+        border-bottom-left-radius: 0;
+        font-size: 13px;
+    }
+    #input-box .input-group {
+        width: 80%;
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+    #sender {
+        font-size: 12px;
+    }
+    #text {
+        padding-left: 20px;
+        font-size: 12px;
+    }
+    #time {
+        font-size: 12px;
+    }
+}
+
+// END OF RESPONSIVENESS ===========================================

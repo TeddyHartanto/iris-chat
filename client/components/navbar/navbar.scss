@@ -15,8 +15,10 @@
 }
 
 .navbar-default .navbar-brand {
-  color: #fff;
+  color: #9e182f;
+  font-weight: 700;
   font-size: 24px;
+  border: 2px solid #9e182f;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
@@ -37,7 +39,7 @@
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #fff;
+  color: #9e182f;
   font-weight: 400;
   border-bottom: 5px solid #fff;
   padding-bottom: 10px;

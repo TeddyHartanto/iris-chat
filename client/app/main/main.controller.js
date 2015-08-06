@@ -51,16 +51,22 @@ angular.module('irisChatApp')
         return 0;
     },  function(newVal, oldVal) {
           if (newVal === 1 && oldVal === 0) {
-            var timestamp = new Date();
+            var timestamp = new Date(), hours = timestamp.getHours(), minutes = timestamp.getMinutes();
+            if (hours/10 < 1) hours = '0' + hours;
+            if (minutes/10 < 1) minutes = '0' + minutes;
+
             // the message below is local to each user
             $scope.messages.push({sender: "System", text: "You are connected! :)",
-                                  timestamp: timestamp.getHours() + ':' + timestamp.getMinutes()})
+                                  timestamp: hours + ':' + minutes})
           }
           if (newVal === 2 && oldVal === 0) {
-            var timestamp = new Date();
+            var timestamp = new Date(), hours = timestamp.getHours(), minutes = timestamp.getMinutes();
+            if (hours/10 < 1) hours = '0' + hours;
+            if (minutes/10 < 1) minutes = '0' + minutes;
+
             // the message below is local to each user
             $scope.messages.push({sender: "System", text: "You are connected! :)",
-                      timestamp: timestamp.getHours() + ':' + timestamp.getMinutes()})
+                                  timestamp: hours + ':' + minutes})
             socket.secondUser();
         }
     });

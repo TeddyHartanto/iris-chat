@@ -95,9 +95,12 @@ angular.module('irisChatApp')
         });
 
         socket.on('secondUser', function() {
-          var timestamp = new Date();
+          var timestamp = new Date(), hours = timestamp.getHours(), minutes = timestamp.getMinutes();
+          if (hours/10 < 1) hours = '0' + hours;
+          if (minutes/10 < 1) minutes = '0' + minutes;
+
           messages.push({ sender: "System", text: "Another user has connected. You may start chatting now. Say hi! :)",
-                          timestamp: timestamp.getHours() + ':' + timestamp.getMinutes()});
+                          timestamp: hours + ':' + minutes});
         });
       },
 

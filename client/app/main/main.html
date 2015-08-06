@@ -10,13 +10,13 @@
       <div class="col-md-8 col-md-offset-2" id="chat-box">
         <div ng-repeat="msg in messages track by $index">
           <div class="row">
-            <div class="col-md-2">
-              <span>{{msg.sender|senderFilter:userId}}</span>
+            <div class="col-xs-2" id="sender">
+              <span class="{{msg.sender|senderFilter:userId}}">{{msg.sender|senderFilter:userId}}:</span>
             </div>
-            <div class="col-md-8">
+            <div class="col-xs-8 col-lg-9 col-md-9" id="text">
               <p>{{msg.text}}</p>
             </div>
-            <div class="col-md-2">
+            <div class="col-xs-2 col-lg-1 col-md-1" id="time">
               <span>{{msg.timestamp}}</span>
             </div>
           </div>
@@ -26,14 +26,15 @@
 
       <!-- where input box is -->
       <div class="col-md-8 col-md-offset-2" id="input-box">
-          <form ng-submit="send()">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Type your message here..." ng-model="input" submit="send()">
-              <span class="input-group-btn">
-                <button class="btn btn-primary" type="submit" ng-click="send()">send</button>
-              </span>
-            </div>
-          </form>
+        <button id ="new" type="submit" class="btn btn-primary" ng-click="newSession()">NEW</button>
+        <form ng-submit="send()">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="Type your message here..." ng-model="input" submit="send()">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="submit" ng-click="send()">send</button>
+            </span>
+          </div>
+        </form>
       </div>
 
     </div>

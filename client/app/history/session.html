@@ -3,16 +3,16 @@
 <section id="session-section">
 	<div class="container">
 		<div class="row">
-			 <div class="col-md-8 col-md-offset-2" id="session-box">
-   			<div ng-repeat="msg in session.messages track by $index">
+      <div class="col-md-8 col-md-offset-2" id="session-box">
+        <div ng-repeat="msg in session.messages track by $index">
           <div class="row">
-            <div class="col-md-2">
-              <span>{{msg.sender|senderFilter:userId}}</span>
+            <div class="col-xs-2" id="sender">
+              <span class="{{msg.sender|senderFilter:userId}}">{{msg.sender|senderFilter:userId}}:</span>
             </div>
-            <div class="col-md-8">
+            <div class="col-xs-8 col-lg-9 col-md-9" id="text">
               <p>{{msg.text}}</p>
             </div>
-            <div class="col-md-2">
+            <div class="col-xs-2 col-lg-1 col-md-1" id="time">
               <span>{{msg.timestamp}}</span>
             </div>
           </div>
@@ -22,5 +22,3 @@
 		</div>
 	</div>
 </section>
-
-{{session}}

@@ -24,15 +24,30 @@ $btnGithubBackgroundHighlight:      #ccc;
   @include button-variant($btnTextAlt, $btnGithubBackground, $btnGithubBackgroundHighlight);
 }
 
-//intro start
+pre {
+    display: block;
+    padding: 0;
+    margin: 0 0 0;
+    font-size: inherit;
+    line-height: inherit;
+    word-break: break-all;
+    word-wrap: break-word;
+    color: inherit;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+}
+
+// INTRO START =======================================================
 
 #intro .jumbotron {
 	position: relative;
 	display: block;
 	background-image: url("https://farm8.staticflickr.com/7109/8162168092_af4fcbb4da_b.jpg");
 	background-size: cover;
-	height: 500px;
+	height: 600px;
 	margin-bottom: 0;
+	border-radius: 0;
 }
 
 #intro {
@@ -41,8 +56,7 @@ $btnGithubBackgroundHighlight:      #ccc;
 
 #intro > .container {
 	position: relative;
-	padding-top: 20px;
-	padding-bottom: 20px;
+	padding: 0;
 }
 
 #intro-word {
@@ -59,13 +73,17 @@ $btnGithubBackgroundHighlight:      #ccc;
 	border: 1px solid #fff;
 	display: inline-block;
 	padding: 5px;
+	margin-top: 0px;
 }
 
-// intro end
+#intro-word > p {
+	font-size: 24px;
+}
+// INTRO END ======================================================
 
-// features start
+// FEATURES START =================================================
 #features {
-	padding: 20px;
+	padding-top: 20px;
 	background-color: rgba(24, 158, 135, 0.4);
 }
 
@@ -82,17 +100,48 @@ $btnGithubBackgroundHighlight:      #ccc;
 	weight: 192px;
 }
 
-#features p {
+#features span {
+	margin-top: 20px;
+	display: block;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
+	font-size: 21px;
+	color: #fff;
 }
-// features end
+// FEATURES END ==================================================
 
+@media (max-width: 1200px) {
+	#intro .jumbotron {
+		height: 500px;
+	}
+}
 
+@media (max-width: 992px) {
+	#intro .jumbotron {
+		height: 400px;
+	}
+}
 
 @media (max-width: 767px) {
 	#intro .jumbotron {
 		height: 300px;
+	}
+}
+
+@media (max-width: 479px) {
+	#intro .jumbotron {
+		height: 300px;
+		padding: 20px;
+	}
+	#intro-word {
+		width: 30%;
+	}
+	#intro-word h1 {
+		font-size: 32px; // default in jumbotron: 36px
+		margin-top: 0px;
+	}
+	#intro-word p {
+		font-size: 17px; // default in jumbotron: 21px;
 	}
 }

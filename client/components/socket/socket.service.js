@@ -99,7 +99,7 @@ angular.module('irisChatApp')
           if (hours/10 < 1) hours = '0' + hours;
           if (minutes/10 < 1) minutes = '0' + minutes;
 
-          messages.push({ sender: "System", text: "Another user has connected. You may start chatting now. Say hi! :)",
+          messages.push({ sender: "System", text: "Another user has connected. You may start chatting now. Say hi! =)",
                           timestamp: hours + ':' + minutes});
         });
       },

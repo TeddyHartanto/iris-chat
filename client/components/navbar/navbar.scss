@@ -15,16 +15,19 @@
 }
 
 .navbar-default .navbar-brand {
-  color: #9e182f;
+  color: #fff;
   font-weight: 700;
   font-size: 24px;
-  border: 2px solid #9e182f;
+}
+
+#brand {
+  border: 2px solid #fff;
+  padding: 4px;
 }
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus {
   color: #fff;
-  font-weight: 400;
-  background-color: transparent;
+  font-weight: 700;
 }
 .navbar-default .navbar-text {
   color: #fff;
@@ -39,7 +42,7 @@
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-  color: #9e182f;
+  color: #fff;
   font-weight: 400;
   border-bottom: 5px solid #fff;
   padding-bottom: 10px;

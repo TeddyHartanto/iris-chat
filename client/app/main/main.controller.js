@@ -56,7 +56,7 @@ angular.module('irisChatApp')
             if (minutes/10 < 1) minutes = '0' + minutes;
 
             // the message below is local to each user
-            $scope.messages.push({sender: "System", text: "You are connected! :)",
+            $scope.messages.push({sender: "System", text: "You are connected! =)",
                                   timestamp: hours + ':' + minutes})
           }
           if (newVal === 2 && oldVal === 0) {
@@ -65,7 +65,7 @@ angular.module('irisChatApp')
             if (minutes/10 < 1) minutes = '0' + minutes;
 
             // the message below is local to each user
-            $scope.messages.push({sender: "System", text: "You are connected! :)",
+            $scope.messages.push({sender: "System", text: "You are connected! =)",
                                   timestamp: hours + ':' + minutes})
             socket.secondUser();
         }

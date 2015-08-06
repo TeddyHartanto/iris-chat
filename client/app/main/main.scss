@@ -93,6 +93,15 @@
     background-color: rgba(24, 158, 135, 0.7);
 }
 
-.btn-primary {
+#input-box .btn-primary {
     background-color: #18949e;
+}
+
+#input-box .btn-primary:hover,
+#input-box .btn-primary:focus,
+#input-box .btn-primary:active,
+#input-box .btn-primary.active {
+    color: #fff;
+    background-color: #116b72;
+    border-color: #0e565c;
 }

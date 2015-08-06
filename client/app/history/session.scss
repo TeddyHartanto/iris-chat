@@ -1,0 +1,21 @@
+#session-section {
+    height: 800px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+}
+
+#session-box {
+    height: 600px;
+    background-color: #fff;
+    border-radius: 1.2em 1.2em 1.2em 1.2em;
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-style: solid;
+    border-color: #aaa;
+    border-collapse: collapse;
+    overflow-y: auto;
+    padding-top: 20px;
+    padding-left: 20px;
+}

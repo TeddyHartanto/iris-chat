@@ -18,6 +18,7 @@ angular.module('irisChatApp')
 
       console.log('User: ');
       console.log(user); // [debug]
+      $scope.userId = user._id;
       $http.post('api/rooms', { userId: user._id })
        .then(function(res) { // res is response sent by $http.post
           room = res.data;
@@ -27,7 +28,6 @@ angular.module('irisChatApp')
           $scope.send = sendMessage;
           socket.syncMessages($scope.messages);
           $scope.newSession = newSession;
-          $scope.userId = user._id;
       });
     });
 

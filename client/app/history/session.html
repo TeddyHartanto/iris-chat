@@ -1,3 +1,26 @@
 <div ng-include="'components/navbar/navbar.html'"></div>
 
+<section id="session-section">
+	<div class="container">
+		<div class="row">
+			 <div class="col-md-8 col-md-offset-2" id="session-box">
+   			<div ng-repeat="msg in session.messages track by $index">
+          <div class="row">
+            <div class="col-md-2">
+              <span>{{msg.sender|senderFilter:userId}}</span>
+            </div>
+            <div class="col-md-8">
+              <p>{{msg.text}}</p>
+            </div>
+            <div class="col-md-2">
+              <span>{{msg.timestamp}}</span>
+            </div>
+          </div>
+          <!-- if just msg, this wil display the JSON object, with quotations over fields -->
+        </div>
+      </div>
+		</div>
+	</div>
+</section>
+
 {{session}}

@@ -1,5 +1,25 @@
 #history-section {
 	height: 800px;
-	background: transparent;
-	padding: 20px;
+	background-color: transparent;
+	padding-top: 60px;
+	padding-bottom: 60px;
+}
+
+#history-section .list-group-item {
+	background-color: rgba(24, 158, 135, 0.8);
+	color: #fff;
+}
+
+#history-section .list-group-item:nth-child(odd) {
+	background-color: rgba(158, 24, 47, 0.8);
+}
+
+#history-section .list-group-item:hover,
+#history-section .list-group-item:focus {
+	background-color: rgb(24, 158, 135);
+}
+
+#history-section .list-group-item:nth-child(odd):hover,
+#history-section .list-group-item:nth-child(odd):focus {
+	background-color: rgb(158, 24, 47);
 }

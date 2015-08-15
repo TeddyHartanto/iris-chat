@@ -4,7 +4,6 @@ angular.module('irisChatApp')
   .controller('MainCtrl', function ($scope, $http, socket, User, $state) {
     var room;
     $scope.messages = [];
-
     // FURTHER IMPROVEMENT (TO-DO):
     // set a variable to indicate whether there's another chatter or not
     // sync the socket with that variable, so when someone connect, the variable is flagged
@@ -16,48 +15,25 @@ angular.module('irisChatApp')
       $http.post('api/rooms', { userId: user._id })
        .then(function(res) { // res is response sent by $http.post
           room = res.data;
-          $scope.room = room; // --> to keep track of changes in room
           socket.joinRoom(room._id);
-          socket.syncMessages($scope.messages);
+          socket.syncSession($scope.messages, $scope.inactive);
+
           $scope.send = sendMessage;
           $scope.newSession = newSession;
+
+          var timestamp = new Date(), hours = timestamp.getHours(), minutes = timestamp.getMinutes();
+          if (hours/10 < 1) hours = '0' + hours;
+          if (minutes/10 < 1) minutes = '0' + minutes;
+          // the message below is local to each user
+          $scope.messages.push({sender: "System", text: "You are connected! =)",
+                                timestamp: hours + ':' + minutes});
+
+          if (room.chatters.length === 2)
+            socket.secondUser();
       });
     });
 
     $scope.input = '';
-
-    /**
-     * Use $scope.$watch to listen to user connected to the app
-     */
-    // when this controller is initialized, the value being watched is always 0
-    // if oldVal === 0, newVal === 1 --> first user has connected
-    // if oldVal === 0, newVal === 2 --> second user has connected
-    $scope.$watch(function(scope) {
-      if (room)
-        return room.chatters.length;
-      else
-        return 0;
-    },  function(newVal, oldVal) {
-          if (newVal === 1 && oldVal === 0) {
-            var timestamp = new Date(), hours = timestamp.getHours(), minutes = timestamp.getMinutes();
-            if (hours/10 < 1) hours = '0' + hours;
-            if (minutes/10 < 1) minutes = '0' + minutes;
-
-            // the message below is local to each user
-            $scope.messages.push({sender: "System", text: "You are connected! =)",
-                                  timestamp: hours + ':' + minutes})
-          }
-          if (newVal === 2 && oldVal === 0) {
-            var timestamp = new Date(), hours = timestamp.getHours(), minutes = timestamp.getMinutes();
-            if (hours/10 < 1) hours = '0' + hours;
-            if (minutes/10 < 1) minutes = '0' + minutes;
-
-            // the message below is local to each user
-            $scope.messages.push({sender: "System", text: "You are connected! =)",
-                                  timestamp: hours + ':' + minutes})
-            socket.secondUser();
-        }
-    });
 
     $scope.$on('logout', function() {
       socket.leaveRoom();

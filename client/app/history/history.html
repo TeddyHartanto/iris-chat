@@ -2,6 +2,8 @@
 
 <section id="history-section">
 	<div class="container">
+		<p> Only meaningful chats are stored, rooms where you are alone
+			  are not displayed here. </p>
 		<div class="list-group">
 			<a class="list-group-item" href="/history/{{room._id}}" ng-repeat="room in rooms">
     		{{room.timestamp}}
@@ -13,5 +15,6 @@
 <footer class="footer">
   <div class="container">
       <p>IRISchat &copy</p>
+      <p>Teddy Hartanto &amp; Riani Santoso</p>
   </div>
 </footer>

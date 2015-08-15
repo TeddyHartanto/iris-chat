@@ -29,7 +29,7 @@ angular.module('irisChatApp')
         socket.emit('secondUser');
       },
 
-      syncMessages: function(messages) {
+      syncSession: function(messages) {
         /**
          * Syncs messages in the room this socket is in on 'sendMessage'
          */
@@ -48,6 +48,15 @@ angular.module('irisChatApp')
           messages.push({ sender: "System", text: "Another user has connected. You may start chatting now. Say hi! =)",
                           timestamp: hours + ':' + minutes});
         });
+
+        socket.on('leaveRoom', function() {
+          var timestamp = new Date(), hours = timestamp.getHours(), minutes = timestamp.getMinutes();
+          if (hours/10 < 1) hours = '0' + hours;
+          if (minutes/10 < 1) minutes = '0' + minutes;
+
+          messages.push({ sender: "System", text: "The other user has disconnected. Start a new chat!",
+                          timestamp: hours + ':' + minutes});
+        })
       },
 
       sendMessage: function(message) {
